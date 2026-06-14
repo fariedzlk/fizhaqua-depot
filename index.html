@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FizhaQua Depot</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="header">
+
+    <div class="brand">
+
+        <img src="images/fizhaqua-logo.png"
+             class="logo"
+             alt="FizhaQua">
+
+        <div class="brand-text">
+            <h1>Sistem Pencatatan Transaksi Harian</h1>
+            <p>Depot Air Minum Isi Ulang FizhaQua</p>
+        </div>
+
+        <div class="header-time">
+            <div id="tanggal"></div>
+            <div id="jam"></div>
+        </div>
+
+    </div>
+
+</div>
+</div>
+
+    <div class="dashboard">
+
+        <div class="card pendapatan">
+            <h3>💰 Pendapatan Hari Ini</h3>
+            <p id="pendapatan">Rp 0</p>
+        </div>
+
+        <div class="card transaksi">
+            <h3>📦 Total Transaksi</h3>
+            <p id="transaksi">0</p>
+        </div>
+
+        <div class="card galon">
+            <h3>🫙 Total Galon</h3>
+            <p id="galon">0</p>
+        </div>
+
+    </div>
+
+    <form id="transaksiForm">
+
+    <label>Nama Pelanggan</label>
+    <input type="text" id="nama" required>
+
+    <label>Jumlah</label>
+    <input type="number" id="jumlah" required>
+
+    <label>Jenis Galon</label>
+    <select id="jenisGalon">
+      <option>19L FQ</option>
+      <option>19L AQ</option>
+      <option>15L</option>
+    </select>
+
+    <label>Layanan</label>
+    <select id="layanan">
+      <option>Isi Ulang</option>
+      <option>Antar Jemput</option>
+      <option>Antar Jauh</option>
+      <option>Sewa Baru</option>
+      <option>Titip Warung</option>
+    </select>
+
+    <label>Harga</label>
+<select id="harga"></select>
+
+    <label>Total</label>
+    <input type="number" id="total" readonly>
+
+    <button type="submit">Simpan</button>
+
+  </form>
+<h2>Filter Tanggal</h2>
+
+<div class="filter-box">
+
+    <input
+      type="date"
+      id="filterAwal">
+
+    <input
+      type="date"
+      id="filterAkhir">
+
+    <button type="button" id="btnResetFilter">
+      Semua Data
+    </button>
+
+    <button type="button" id="btnPdf" class="pdf-btn">
+      Export PDF
+    </button>
+
+</div>
+</div>
+
+    <h2>Riwayat Transaksi</h2>
+
+    <table id="tabelRiwayat">
+
+        <thead>
+            <tr>
+                <th>Waktu</th>
+                <th>Nama</th>
+                <th>Jumlah</th>
+                <th>Total</th>
+                <th>Aksi</th>
+            </tr>
+        </thead>
+
+        <tbody id="riwayatBody">
+
+        </tbody>
+
+    </table>
+    <div id="riwayatMobile"></div>
+
+</div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js"></script>
+
+<script src="script.js"></script>
+
+</body>
+</html>
