@@ -20,18 +20,6 @@ function setHarga() {
     return;
   }
 
-  // 19L AQ
-  if (jenisGalon.value === "19L AQ") {
-
-    layanan.value = "Isi Ulang";
-    layanan.disabled = true;
-
-    harga.innerHTML =
-      `<option value="6000">Rp 6.000</option>`;
-
-    hitungTotal();
-    return;
-  }
 
   // 19L FQ
   layanan.disabled = false;
