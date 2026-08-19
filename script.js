@@ -699,7 +699,13 @@ if (result && result.success) {
   btnTambahPengeluaran.textContent =
     "+ Tambah Pengeluaran";
 
-} else {
+  // REFRESH DATA DARI GOOGLE SHEETS
+  setTimeout(() => {
+    loadDashboard();
+  }, 500);
+
+}
+ else {
 
   throw new Error("Response Apps Script tidak valid");
 }
