@@ -522,3 +522,153 @@ window.open(
 document
   .getElementById("btnPdf")
   .addEventListener("click", generatePDF);
+
+// =========================
+// FORM PENGELUARAN
+// =========================
+
+const btnTambahPengeluaran =
+  document.getElementById("btnTambahPengeluaran");
+
+const formPengeluaran =
+  document.getElementById("formPengeluaran");
+
+const btnBatalPengeluaran =
+  document.getElementById("btnBatalPengeluaran");
+
+const tanggalPengeluaran =
+  document.getElementById("tanggalPengeluaran");
+
+
+// Buka / tutup form pengeluaran
+btnTambahPengeluaran.addEventListener("click", () => {
+
+  const sedangTerbuka =
+    formPengeluaran.style.display === "block";
+
+  if (sedangTerbuka) {
+
+    // Tutup form
+    formPengeluaran.style.display = "none";
+
+    btnTambahPengeluaran.textContent =
+      "+ Tambah Pengeluaran";
+
+  } else {
+
+    // Buka form
+    formPengeluaran.style.display = "block";
+
+    btnTambahPengeluaran.textContent =
+      "− Tutup Pengeluaran";
+
+    // Tanggal otomatis hari ini
+    const hariIni =
+      new Date().toISOString().split("T")[0];
+
+    tanggalPengeluaran.value = hariIni;
+
+  }
+
+});
+
+
+// Tombol Batal
+btnBatalPengeluaran.addEventListener("click", () => {
+
+  formPengeluaran.style.display = "none";
+
+  btnTambahPengeluaran.textContent =
+    "+ Tambah Pengeluaran";
+
+});
+
+// =========================
+// SIMPAN PENGELUARAN
+// =========================
+
+document
+  .getElementById("btnSimpanPengeluaran")
+  .addEventListener("click", async () => {
+
+    const jenis =
+      document.getElementById("jenisPengeluaran").value;
+
+    const keterangan =
+      document.getElementById("keteranganPengeluaran").value.trim();
+
+    const nominal =
+      document.getElementById("nominalPengeluaran").value;
+
+    const tanggal =
+      document.getElementById("tanggalPengeluaran").value;
+
+
+    // Validasi
+    if (!keterangan || !nominal || !tanggal) {
+
+      alert("Lengkapi data pengeluaran terlebih dahulu");
+
+      return;
+    }
+
+
+    const data = {
+
+      tipe: "pengeluaran",
+
+      jenis: jenis,
+
+      keterangan: keterangan,
+
+      nominal: Number(nominal),
+
+      tanggal: tanggal
+
+    };
+
+
+    try {
+
+      const response = await fetch(
+        "https://script.google.com/macros/s/AKfycbxd_gzzXNClIFzNtIm8ALSVg0z5wVO9GbwFpFVuW61wGS50iMVEVy727lAKB0OBMj8j-w/exec",
+        {
+          method: "POST",
+          body: JSON.stringify(data)
+        }
+      );
+
+
+const hasil = await response.text();
+
+console.log("RESPONSE APPS SCRIPT =", hasil);
+
+alert("Response: " + hasil);
+
+
+      // Reset form
+      document
+        .getElementById("keteranganPengeluaran")
+        .value = "";
+
+      document
+        .getElementById("nominalPengeluaran")
+        .value = "";
+
+
+      // Tutup form
+      formPengeluaran.style.display = "none";
+
+      btnTambahPengeluaran.textContent =
+        "+ Tambah Pengeluaran";
+
+
+    } catch (error) {
+
+      console.error(error);
+
+      alert("Gagal menyimpan pengeluaran");
+
+    }
+
+  });
