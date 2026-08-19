@@ -140,7 +140,7 @@ async function loadDashboard() {
 
 
  const response = await fetch(
-  "https://script.google.com/macros/s/AKfycbwbP1iQ8X2y-e7Wuo4H_ki6nlg754TmcpT4JSiaQPWq9ae1M0xWU54lsntQu0BhVwX-0Q/exec"
+  https://script.google.com/macros/s/AKfycbwbP1iQ8X2y-e7Wuo4H_ki6nlg754TmcpT4JSiaQPWq9ae1M0xWU54lsntQu0BhVwX-0Q/exec
 );
 
   const data = await response.json();
