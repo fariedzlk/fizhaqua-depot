@@ -87,7 +87,80 @@
 
     <button type="submit">Simpan</button>
 
-  </form>
+   </form>
+
+  <!-- PENGELUARAN -->
+
+  <div class="pengeluaran-card">
+
+    <h2>💸 Pengeluaran</h2>
+
+    <p>Catat biaya operasional depot</p>
+
+    <button
+      type="button"
+      id="btnTambahPengeluaran">
+      + Tambah Pengeluaran
+    </button>
+
+  </div>
+
+  <div
+    id="formPengeluaran"
+    class="form-pengeluaran"
+    style="display: none;">
+
+    <h2>Tambah Pengeluaran</h2>
+
+    <label>Jenis Pengeluaran</label>
+
+    <select id="jenisPengeluaran">
+      <option value="Harian">Harian</option>
+      <option value="Berkala">Berkala</option>
+      <option value="Bulanan">Bulanan</option>
+    </select>
+
+    <label>Keterangan</label>
+
+    <input
+      type="text"
+      id="keteranganPengeluaran"
+      placeholder="Contoh: Sabun galon"
+      required>
+
+    <label>Nominal</label>
+
+    <input
+      type="number"
+      id="nominalPengeluaran"
+      placeholder="Contoh: 20000"
+      required>
+
+    <label>Tanggal</label>
+
+    <input
+      type="date"
+      id="tanggalPengeluaran"
+      required>
+
+    <div class="pengeluaran-actions">
+
+      <button
+        type="button"
+        id="btnSimpanPengeluaran">
+        Simpan
+      </button>
+
+      <button
+        type="button"
+        id="btnBatalPengeluaran">
+        Batal
+      </button>
+
+    </div>
+
+  </div>
+
 <h2>Filter Tanggal</h2>
 
 <div class="filter-box">
