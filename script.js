@@ -643,7 +643,38 @@ const hasil = await response.text();
 
 console.log("RESPONSE APPS SCRIPT =", hasil);
 
-alert("Response: " + hasil);
+if (!response.ok) {
+  throw new Error("HTTP " + response.status);
+}
+
+// Kalau Apps Script mengembalikan JSON
+let result;
+
+try {
+  result = JSON.parse(hasil);
+} catch (e) {
+  console.warn("Response bukan JSON:", hasil);
+  result = null;
+}
+
+if (result && result.success) {
+
+  alert("Pengeluaran berhasil disimpan!");
+
+  // Reset form
+  document.getElementById("keteranganPengeluaran").value = "";
+  document.getElementById("nominalPengeluaran").value = "";
+
+  // Tutup form
+  formPengeluaran.style.display = "none";
+
+  btnTambahPengeluaran.textContent =
+    "+ Tambah Pengeluaran";
+
+} else {
+
+  throw new Error("Response Apps Script tidak valid");
+}
 
 
       // Reset form
