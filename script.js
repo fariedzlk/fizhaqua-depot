@@ -640,80 +640,53 @@ document
       return;
     }
 
+try {
 
-    const data = {
-
-      tipe: "pengeluaran",
-
-      jenis: jenis,
-
-      keterangan: keterangan,
-
-      nominal: Number(nominal),
-
-      tanggal: tanggal
-
-    };
-
-
-    try {
-
-const response = await fetch(
-  "https://script.google.com/macros/s/AKfycbwbP1iQ8X2y-e7Wuo4H_ki6nlg754TmcpT4JSiaQPWq9ae1M0xWU54lsntQu0BhVwX-0Q/exec",
-  {
-    method: "POST",
-    body: JSON.stringify(data)
-  }
-);
-
-
-const hasil = await response.text();
-
-console.log("RESPONSE APPS SCRIPT =", hasil);
-
-// Kalau request sudah mendapat response,
-// anggap proses simpan selesai.
-// Data kemudian diambil ulang dari Google Sheets.
-console.log("Pengeluaran berhasil dikirim");
-
-// Refresh data
-await loadDashboard();
-
-// Reset form
-document.getElementById("keteranganPengeluaran").value = "";
-document.getElementById("nominalPengeluaran").value = "";
-
-// Tutup form
-formPengeluaran.style.display = "none";
-
-btnTambahPengeluaran.textContent =
-  "+ Tambah Pengeluaran";
-
-alert("Pengeluaran berhasil disimpan!");
-
-      // Reset form
-      document
-        .getElementById("keteranganPengeluaran")
-        .value = "";
-
-      document
-        .getElementById("nominalPengeluaran")
-        .value = "";
-
-
-      // Tutup form
-      formPengeluaran.style.display = "none";
-
-      btnTambahPengeluaran.textContent =
-        "+ Tambah Pengeluaran";
-
-
-    } catch (error) {
-
-      console.error(error);
-
-      alert("Gagal menyimpan pengeluaran");
-
+  const response = await fetch(
+    "https://script.google.com/macros/s/AKfycbwbP1iQ8X2y-e7Wuo4H_ki6nlg754TmcpT4JSiaQPWq9ae1M0xWU54lsntQu0BhVwX-0Q/exec",
+    {
+      method: "POST",
+      body: JSON.stringify(data)
     }
+  );
 
-  });
+  const hasil = await response.text();
+
+  console.log("RESPONSE APPS SCRIPT =", hasil);
+
+  console.log("Pengeluaran berhasil dikirim");
+
+  tombolSimpan.disabled = false;
+  tombolSimpan.textContent = "Simpan";
+
+  alert("Pengeluaran berhasil disimpan!");
+
+  // Refresh data
+  loadDashboard();
+
+  // Reset form
+  document
+    .getElementById("keteranganPengeluaran")
+    .value = "";
+
+  document
+    .getElementById("nominalPengeluaran")
+    .value = "";
+
+  // Tutup form
+  formPengeluaran.style.display = "none";
+
+  btnTambahPengeluaran.textContent =
+    "+ Tambah Pengeluaran";
+
+
+} catch (error) {
+
+  console.error(error);
+
+  tombolSimpan.disabled = false;
+  tombolSimpan.textContent = "Simpan";
+
+  alert("Gagal menyimpan pengeluaran");
+
+}
