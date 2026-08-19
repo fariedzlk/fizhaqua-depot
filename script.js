@@ -139,9 +139,9 @@ setTimeout(() => {
 async function loadDashboard() {
 
 
-  const response = await fetch(
-    "https://script.google.com/macros/s/AKfycbxd_gzzXNClIFzNtIm8ALSVg0z5wVO9GbwFpFVuW61wGS50iMVEVy727lAKB0OBMj8j-w/exec"
-  );
+ const response = await fetch(
+  "https://script.google.com/macros/s/AKfycbwbP1iQ8X2y-e7Wuo4H_ki6nlg754TmcpT4JSiaQPWq9ae1M0xWU54lsntQu0BhVwX-0Q/exec"
+);
 
   const data = await response.json();
 
@@ -630,13 +630,13 @@ document
 
     try {
 
-      const response = await fetch(
-        "https://script.google.com/macros/s/AKfycbxd_gzzXNClIFzNtIm8ALSVg0z5wVO9GbwFpFVuW61wGS50iMVEVy727lAKB0OBMj8j-w/exec",
-        {
-          method: "POST",
-          body: JSON.stringify(data)
-        }
-      );
+const response = await fetch(
+  "https://script.google.com/macros/s/AKfycbwbP1iQ8X2y-e7Wuo4H_ki6nlg754TmcpT4JSiaQPWq9ae1M0xWU54lsntQu0BhVwX-0Q/exec",
+  {
+    method: "POST",
+    body: JSON.stringify(data)
+  }
+);
 
 
 const hasil = await response.text();
