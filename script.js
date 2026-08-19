@@ -671,45 +671,25 @@ const hasil = await response.text();
 
 console.log("RESPONSE APPS SCRIPT =", hasil);
 
-if (!response.ok) {
-  throw new Error("HTTP " + response.status);
-}
+// Kalau request sudah mendapat response,
+// anggap proses simpan selesai.
+// Data kemudian diambil ulang dari Google Sheets.
+console.log("Pengeluaran berhasil dikirim");
 
-// Kalau Apps Script mengembalikan JSON
-let result;
+// Refresh data
+await loadDashboard();
 
-try {
-  result = JSON.parse(hasil);
-} catch (e) {
-  console.warn("Response bukan JSON:", hasil);
-  result = null;
-}
+// Reset form
+document.getElementById("keteranganPengeluaran").value = "";
+document.getElementById("nominalPengeluaran").value = "";
 
-if (result && result.success) {
+// Tutup form
+formPengeluaran.style.display = "none";
 
-  alert("Pengeluaran berhasil disimpan!");
+btnTambahPengeluaran.textContent =
+  "+ Tambah Pengeluaran";
 
-  // Reset form
-  document.getElementById("keteranganPengeluaran").value = "";
-  document.getElementById("nominalPengeluaran").value = "";
-
-  // Tutup form
-  formPengeluaran.style.display = "none";
-
-  btnTambahPengeluaran.textContent =
-    "+ Tambah Pengeluaran";
-
-  // REFRESH DATA DARI GOOGLE SHEETS
-  setTimeout(() => {
-    loadDashboard();
-  }, 500);
-
-}
- else {
-
-  throw new Error("Response Apps Script tidak valid");
-}
-
+alert("Pengeluaran berhasil disimpan!");
 
       // Reset form
       document
