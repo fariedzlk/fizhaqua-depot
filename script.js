@@ -146,6 +146,34 @@ async function loadDashboard() {
   const data = await response.json();
 
   window.dataRiwayat = data.riwayat;
+  window.dataPengeluaran = data.pengeluaran || [];
+
+const pengeluaranBody =
+  document.getElementById("pengeluaranBody");
+
+pengeluaranBody.innerHTML = "";
+
+window.dataPengeluaran.forEach(item => {
+
+  const waktu = new Date(item.waktu);
+
+  const tanggalFormat =
+    waktu.toLocaleDateString("id-ID") +
+    " " +
+    waktu.toLocaleTimeString("id-ID", {
+      hour: "2-digit",
+      minute: "2-digit"
+    });
+
+  pengeluaranBody.innerHTML += `
+    <tr>
+      <td>${tanggalFormat}</td>
+      <td>${item.jenis}</td>
+      <td>${item.keterangan}</td>
+      <td>Rp ${Number(item.nominal).toLocaleString("id-ID")}</td>
+    </tr>
+  `;
+});
 
   const tbody = document.getElementById("riwayatBody");
 
