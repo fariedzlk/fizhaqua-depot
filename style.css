@@ -94,7 +94,7 @@ body{
 
 .dashboard{
     display:grid;
-    grid-template-columns:repeat(3,1fr);
+    grid-template-columns:repeat(2,1fr);
 
     gap:20px;
 
@@ -130,6 +130,16 @@ body{
         135deg,
         #0b63d8,
         #1494ea
+    );
+
+    color:white;
+}
+
+.pengeluaran{
+    background:linear-gradient(
+        135deg,
+        #dc3545,
+        #ef5350
     );
 
     color:white;
@@ -292,6 +302,23 @@ button:hover{
 
     cursor:pointer;
 }
+.delete-btn{
+    padding:6px 10px;
+    font-size:12px;
+
+    width:auto;
+    height:auto;
+
+    min-width:60px;
+
+    border:none;
+    border-radius:8px;
+
+    background:#dc3545;
+    color:white;
+
+    cursor:pointer;
+}
 /* FILTER TANGGAL */
 
 .filter-box{
@@ -399,13 +426,84 @@ button:hover{
 }
 
 #tabelRiwayat{
+    width:100%;
+    table-layout:fixed;
     font-size:12px;
+    border-collapse:separate;
+    border-spacing:0;
 }
 
 #tabelRiwayat th,
 #tabelRiwayat td{
-    padding:6px 4px;
+    padding:8px 7px;
+    vertical-align:middle;
 }
+
+/* Waktu */
+#tabelRiwayat th:nth-child(1),
+#tabelRiwayat td:nth-child(1){
+    width:25%;
+    padding-right:10px;
+}
+
+/* Nama */
+#tabelRiwayat th:nth-child(2),
+#tabelRiwayat td:nth-child(2){
+    width:28%;
+    padding-left:10px;
+    padding-right:8px;
+}
+
+/* Jumlah */
+#tabelRiwayat th:nth-child(3),
+#tabelRiwayat td:nth-child(3){
+    width:11%;
+    text-align:center;
+    padding-left:5px;
+    padding-right:5px;
+}
+
+/* Total */
+#tabelRiwayat th:nth-child(4),
+#tabelRiwayat td:nth-child(4){
+    width:18%;
+    padding-left:8px;
+    padding-right:8px;
+}
+
+#tabelRiwayat td:nth-child(4){
+    white-space:normal !important;
+    line-height:1.45;
+}
+
+/* Aksi */
+#tabelRiwayat th:nth-child(5),
+#tabelRiwayat td:nth-child(5){
+    width:18%;
+    text-align:center;
+    padding-left:5px;
+    padding-right:0;
+}
+
+/* Tulisan header */
+#tabelRiwayat th{
+    white-space:nowrap;
+    font-size:12px;
+}
+
+/* Tombol Edit */
+#tabelRiwayat .edit-btn{
+    width:52px !important;
+    min-width:52px !important;
+    max-width:52px !important;
+    height:36px !important;
+    padding:0 !important;
+    margin:0 auto !important;
+    font-size:11px !important;
+}
+
+
+
 .filter-box{
     flex-direction:column;
 }
@@ -413,10 +511,24 @@ button:hover{
 .filter-box button{
     width:100%;
 }
-.edit-btn{
-    padding:4px 8px;
-    font-size:11px;
-    min-width:55px;
+/* Tombol RIWAYAT PENGELUARAN */
+#tabelPengeluaran .edit-btn,
+#tabelPengeluaran .delete-btn{
+    width:84px;
+    height:38px;
+    padding:0;
+    margin-top:0;
+    font-size:14px;
+}
+
+/* Tombol RIWAYAT TRANSAKSI */
+#tabelRiwayat .edit-btn{
+    width:auto;
+    min-width:60px;
+    height:auto;
+    padding:6px 10px;
+    margin-top:0;
+    font-size:12px;
 }
 }
 .pdf-btn{
@@ -434,6 +546,113 @@ button:hover{
 
 .pdf-btn:hover{
     background:#c82333;
+}
+
+@media (max-width: 768px){
+
+    #tabelRiwayat{
+        width:100% !important;
+        table-layout:fixed !important;
+    }
+
+    #tabelRiwayat th:nth-child(1),
+    #tabelRiwayat td:nth-child(1){
+        width:22% !important;
+    }
+
+    #tabelRiwayat th:nth-child(2),
+    #tabelRiwayat td:nth-child(2){
+        width:25% !important;
+    }
+
+    #tabelRiwayat th:nth-child(3),
+    #tabelRiwayat td:nth-child(3){
+        width:17% !important;
+    }
+
+    #tabelRiwayat th:nth-child(4),
+    #tabelRiwayat td:nth-child(4){
+        width:20% !important;
+    }
+
+    #tabelRiwayat th:nth-child(5),
+    #tabelRiwayat td:nth-child(5){
+        width:16% !important;
+    }
+
+    /* HEADER SAJA */
+    #tabelRiwayat th{
+        font-size:12px !important;
+        white-space:nowrap !important;
+        padding:8px 3px !important;
+    }
+
+    /* Isi tabel */
+    #tabelRiwayat td{
+        padding:8px 5px !important;
+    }
+
+    /* Total dibuat 2 baris */
+    #tabelRiwayat td:nth-child(4){
+        white-space:normal !important;
+        line-height:1.4 !important;
+    }
+
+    /* Edit */
+    #tabelRiwayat .edit-btn{
+        width:52px !important;
+        min-width:52px !important;
+        max-width:52px !important;
+        height:36px !important;
+        padding:0 !important;
+        margin:0 auto !important;
+    }
+}
+
+/* =========================
+   RIWAYAT PENGELUARAN
+========================= */
+
+#tabelPengeluaran{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:10px;
+}
+
+#tabelPengeluaran th{
+    background:#dc3545;
+    color:white;
+
+    padding:14px;
+
+    text-align:left;
+
+    font-size:14px;
+}
+
+#tabelPengeluaran td{
+    padding:12px 14px;
+
+    border-bottom:1px solid #e5e7eb;
+
+    color:#111;
+
+    font-size:14px;
+}
+
+#tabelPengeluaran tr:hover{
+    background:#f8fafc;
+}
+
+/* Kolom nominal */
+#tabelPengeluaran td:nth-child(4){
+    font-weight:600;
+    white-space:nowrap;
+}
+
+/* Kolom aksi */
+#tabelPengeluaran td:nth-child(5){
+    white-space:nowrap;
 }
 
 /* =========================
@@ -503,4 +722,216 @@ button:hover{
         text-align: right;
         white-space: nowrap;
     }
+}
+/* =========================
+   CUSTOM NOTIFICATION
+========================= */
+
+.custom-notif{
+    position:fixed;
+    top:24px;
+    right:24px;
+
+    display:flex;
+    align-items:center;
+    gap:12px;
+
+    min-width:280px;
+    max-width:380px;
+
+    padding:14px 18px;
+
+    background:white;
+    color:#111;
+
+    border-radius:14px;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.18);
+
+    font-size:14px;
+    font-weight:600;
+
+    z-index:99999;
+
+    opacity:0;
+    transform:translateY(-15px);
+
+    transition:
+        opacity .25s ease,
+        transform .25s ease;
+}
+
+.custom-notif.show{
+    opacity:1;
+    transform:translateY(0);
+}
+
+.custom-notif-icon{
+    width:32px;
+    height:32px;
+
+    flex-shrink:0;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:50%;
+
+    color:white;
+
+    font-size:18px;
+    font-weight:700;
+}
+
+/* BERHASIL */
+.custom-notif.success
+.custom-notif-icon{
+    background:#86c540;
+}
+
+/* GAGAL */
+.custom-notif.error 
+.custom-notif-icon{
+    background:#dc3545;
+}
+
+
+/* =========================
+   CONFIRM MODAL
+========================= */
+
+.confirm-overlay{
+    position:fixed;
+
+    inset:0;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    background:rgba(0,0,0,.45);
+
+    z-index:100000;
+
+    opacity:0;
+    visibility:hidden;
+
+    transition:.2s ease;
+}
+
+.confirm-overlay.show{
+    opacity:1;
+    visibility:visible;
+}
+
+.confirm-box{
+    width:min(90%,380px);
+
+    background:white;
+
+    padding:24px;
+
+    border-radius:18px;
+
+    box-shadow:0 15px 40px rgba(0,0,0,.25);
+
+    text-align:center;
+
+    transform:scale(.95);
+
+    transition:.2s ease;
+}
+
+.confirm-overlay.show
+.confirm-box{
+    transform:scale(1);
+}
+
+.confirm-icon{
+    width:50px;
+    height:50px;
+
+    margin:0 auto 14px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:50%;
+
+    background:#dc3545;
+    color:white;
+
+    font-size:24px;
+    font-weight:700;
+}
+
+.confirm-box h3{
+    margin-bottom:8px;
+
+    font-size:18px;
+}
+
+.confirm-box p{
+    margin-bottom:20px;
+
+    font-size:13px;
+
+    color:#666;
+}
+
+.confirm-actions{
+    display:flex;
+    gap:10px;
+}
+
+.confirm-actions button{
+    flex:1;
+
+    width:auto;
+
+    height:44px;
+
+    margin-top:0;
+
+    border-radius:11px;
+
+    font-size:14px;
+}
+
+.confirm-cancel{
+    background:#e5e7eb;
+    color:#333;
+}
+
+.confirm-delete{
+    background:#dc3545;
+    color:white;
+}
+
+
+@media(max-width:768px){
+
+    .custom-notif{
+        top:18px;
+        left:14px;
+        right:14px;
+
+        min-width:0;
+        max-width:none;
+
+        justify-content:center;
+
+        padding:13px 16px;
+
+        font-size:13px;
+    }
+
+    .confirm-box{
+        width:calc(100% - 28px);
+
+        padding:22px;
+    }
+
 }
